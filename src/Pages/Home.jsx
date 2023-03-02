@@ -1,45 +1,20 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 
 import "./Home.css";
 import { BsSearch } from "react-icons/bs";
 
 const Home = () => {
-  const [newColor, setNewColor] = useState("");
-  //   const colors = ["blue", "red", "orange"];
+  const [color, setColor] = useState("");
 
-  const colors = [
-    {
-      name: "blue",
-      color: "blue",
-    },
-    {
-      name: "red",
-      color: "red",
-    },
-    {
-      name: "orange",
-      color: "orange",
-    },
-  ];
-
-  const [bgColor, setBgColor] = useState(null);
-  const styles = {
-    backgroundColor: bgColor,
-    width: "100%",
-    height: "100%",
-    borderRadius: "10px",
+  const onChange = (e) => {
+    const value = e.target.value;
+    if (value.includes("#")) {
+      setColor(value.slice(value.lastIndexOf("#"), value.length + 2));
+    } else {
+      value.split(" ").map((item) => setColor(item));
+    }
   };
-  useEffect(() => {
-    colors.map((color) => {
-      if (newColor.includes(color.name)) {
-        setBgColor(color.color);
-      }
-      if (newColor === "" && newColor.includes(!color.name)) {
-        setBgColor("#fff");
-      }
-    });
-  }, [newColor]);
-  console.log(bgColor, "bg", colors, "colors");
+
   return (
     <div className="Home">
       <div className="container">
@@ -48,14 +23,13 @@ const Home = () => {
             type="text"
             className="input"
             placeholder="search color"
-            value={newColor}
-            onChange={(e) => setNewColor(e.target.value)}
+            onChange={onChange}
           />
           <BsSearch />
         </div>
 
         <div className="colorType">
-          <div className="background" style={styles}></div>
+          <div className="background" style={{ backgroundColor: color }}></div>
         </div>
       </div>
     </div>
