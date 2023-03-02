@@ -26,7 +26,9 @@ const Home = () => {
         </div>
 
         <div className="colorType">
-          <div className="background" style={{ backgroundColor: color }}></div>
+          <div className="background" style={{ backgroundColor: color }}>
+            <span>Color</span>
+          </div>
         </div>
       </div>
     </div>
