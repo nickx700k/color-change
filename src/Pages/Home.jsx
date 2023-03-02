@@ -8,11 +8,7 @@ const Home = () => {
 
   const onChange = (e) => {
     const value = e.target.value;
-    if (value.includes("#")) {
-      setColor(value.slice(value.lastIndexOf("#"), value.length + 2));
-    } else {
-      value.split(" ").map((item) => setColor(item));
-    }
+    setColor(value.split(" ").map((item) => setColor(item)));
   };
 
   return (
