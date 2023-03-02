@@ -8,7 +8,8 @@ const Home = () => {
 
   const onChange = (e) => {
     const value = e.target.value;
-    setColor(value.split(" ").map((item) => setColor(item)));
+
+    value.split(" ").map((item) => setColor(item));
   };
 
   return (
